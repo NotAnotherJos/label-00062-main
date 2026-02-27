@@ -1,0 +1,12 @@
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ktorfit-app
+    image: ktorfit-koin-demo:latest
+    # 覆盖默认的 ENTRYPOINT，执行完程序后保持容器运行不退出，方便查看日志
+    entrypoint: ["/bin/sh", "-c", "./bin/ktorfit-koin-demo; tail -f /dev/null"] 
+    environment:
+      - LOG_LEVEL=INFO
